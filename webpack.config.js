@@ -18,6 +18,12 @@ module.exports = {
         static: path.resolve(__dirname, 'public'),
     },
 
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    },
+
     plugins: [
         new htmlWebpackPlugin ({
             template: path.resolve(__dirname, 'public', 'index.html'),
@@ -29,6 +35,11 @@ module.exports = {
                 test: /\.jsx$/,
                 exclude: /node_modules/,
                 use: 'babel-loader'
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     }
